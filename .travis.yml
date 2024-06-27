@@ -19,6 +19,15 @@ deploy:
     branch: main
   access_key_id: "$AWS_ACCESS_KEY"
   secret_access_key: "$AWS_SECRET_KEY"
+  after_deploy:
+  - aws elasticbeanstalk update-environment --application-name "frontend" --environment-name "Frontend-env-1" --version-label $TRAVIS_COMMIT
+
+notifications:
+  email:
+    recipients:
+      - bhaskarchauhan5227@gmail.com
+    on_success: change
+    on_failure: always
 
 
 
